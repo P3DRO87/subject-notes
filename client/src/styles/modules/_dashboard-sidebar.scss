@@ -1,0 +1,33 @@
+.dashboard-sidebar {
+   min-height: 100svh;
+   display: flex;
+   flex-direction: column;
+   padding-inline: 0.3rem;
+   border-right: 1px solid var(--border-color);
+   .logo-container {
+      margin-top: 0.4rem;
+   }
+   .block-links {
+      margin-top: 1rem;
+      padding-inline: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      color: var(--font-light-muted);
+      .block-item {
+         all: unset;
+         cursor: pointer;
+         font-weight: 600;
+         display: flex;
+         align-items: center;
+         svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.75rem;
+         }
+         &.active {
+            color: var(--font-light);
+         }
+      }
+   }
+}

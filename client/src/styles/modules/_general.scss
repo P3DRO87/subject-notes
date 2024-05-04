@@ -1,0 +1,77 @@
+body {
+   font-family: "Raleway";
+}
+
+p,
+h1,
+h2 {
+   margin-bottom: 0;
+}
+
+button {
+   all: unset;
+   cursor: pointer;
+   box-sizing: border-box;
+}
+
+.auth-link {
+   color: var(--secondary-dark);
+   font-size: 1.1rem;
+   font-weight: 500;
+   display: block;
+}
+
+.debug-outln {
+   outline: 1px solid tomato;
+}
+
+.app-active-container {
+   max-height: 100svh;
+   overflow-y: hidden;
+}
+
+.font-weight-500 {
+   font-weight: 500;
+}
+
+.font-weight-600 {
+   font-weight: 600;
+}
+
+.btn-primary {
+   border: none;
+   cursor: pointer;
+   background: #18181b;
+   color: #fff;
+   padding: 0.3rem 0.75rem;
+   border-radius: 0.375rem;
+   transition: background ease 0.3s;
+   &:hover {
+      background: #3c3c41;
+   }
+   &:active {
+      opacity: 0.9;
+   }
+}
+
+.font-muted {
+   color: var(--font-light-muted);
+}
+
+.muted-disabled {
+   opacity: 0.7;
+}
+
+.alert-toast-content {
+   color: #e10000;
+   font-weight: 500;
+   font-size: 1.1rem;
+   svg {
+      width: 23px;
+      height: 23px;
+   }
+}
+
+.scroll-y-auto {
+   overflow-y: auto;
+}

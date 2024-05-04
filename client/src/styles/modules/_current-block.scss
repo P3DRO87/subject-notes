@@ -1,0 +1,15 @@
+.current-block {
+   height: 100svh;
+   .block-header {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      .block-title {
+         font-size: 1.5rem;
+         font-weight: 600;
+      }
+   }
+   .block-content {
+      height: 100%;
+      overflow-y: auto;
+   }
+}

@@ -1,0 +1,44 @@
+.label-container {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 2rem;
+   &.has-error {
+      .label-text {
+         color: var(--error);
+      }
+      input {
+         border-color: var(--error);
+         &:focus {
+            outline-color: var(--error);
+         }
+      }
+   }
+   .label-text {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+   }
+   input {
+      border: none;
+      width: 100%;
+      border-bottom: 1px solid var(--strong-grey);
+      border-radius: 0.2rem;
+      padding: 0.2rem;
+      &:focus-visible {
+         outline-offset: 2px;
+         outline: 2px solid var(--strong-grey);
+      }
+      &::placeholder {
+         color: var(--font-light-muted);
+         font-weight: 500;
+      }
+   }
+   .error-msg {
+      color: var(--error);
+      margin-left: 0.8rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.4rem;
+   }
+}

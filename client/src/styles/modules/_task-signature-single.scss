@@ -1,0 +1,33 @@
+.task-single-page {
+   height: 100%;
+   .task-block-item-container {
+      height: 100%;
+      overflow: auto;
+   }
+   .rich-text-container {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--primary-white);
+      width: 100%;
+   }
+   .task-block-item {
+      display: flex;
+      justify-content: center;
+      @media only screen and (min-width: 817px) {
+         padding: 1.5rem 0;
+         .content {
+            border-radius: 0.4rem;
+         }
+      }
+      .content {
+         border: 1px solid var(--border-color);
+         padding: 0.6rem 0.8rem;
+      }
+   }
+   .pagination-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+   }
+}

@@ -1,0 +1,44 @@
+.calendar-page {
+   .rbc-event {
+      background: #18181b;
+      &.rbc-selected {
+         background: #18181b;
+      }
+   }
+   .rbc-btn-group {
+      button {
+         font-weight: 500;
+         border: 1px solid var(--border-color);
+         &:active {
+            border-color: transparent !important;
+         }
+         &:focus {
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+         }
+         &:hover {
+            background: #e6e6e6;
+            outline: none;
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+         }
+
+         &.rbc-active {
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+            &:hover {
+               background: #e6e6e6;
+               outline: none;
+               box-shadow: none;
+               border: 1px solid var(--border-color);
+            }
+
+            &:focus {
+               background: #e6e6e6;
+               box-shadow: none;
+               border: 1px solid var(--border-color);
+            }
+         }
+      }
+   }
+}

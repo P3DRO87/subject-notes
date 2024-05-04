@@ -1,0 +1,15 @@
+.app-logo {
+   display: flex;
+   align-items: center;
+   gap: 0.4rem;
+   .icon {
+      width: 33px;
+      height: 33px;
+   }
+   .text {
+      width: 176px;
+      width: clamp(8rem, 12vw, 43rem);
+
+      height: 47px;
+   }
+}

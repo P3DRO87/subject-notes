@@ -1,0 +1,141 @@
+.home-page-wrapper {
+   background-size: cover;
+   background-image: url("/mesh-background.png");
+   .register-btn {
+      color: #fff;
+      font-weight: 500;
+      padding: 0.4rem 0.875rem;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      border-radius: 10px;
+      text-decoration: none;
+   }
+   .header-container {
+      position: sticky;
+      top: 1.25rem;
+      z-index: 2024;
+   }
+
+   .header {
+      background: #ffffffb0;
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      box-shadow: 2px 4px 4px 1px rgba(0, 0, 0, 0.08);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .link-item {
+         letter-spacing: -0.025em;
+         text-decoration: none;
+         color: var(--secondary-dark);
+      }
+      .register-btn {
+         color: #fff;
+      }
+      .account-links {
+         display: flex;
+         align-items: center;
+         gap: 0.8rem;
+      }
+   }
+   .mobile-nav {
+      bottom: -120px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px 15px;
+      width: calc(100% - 25px);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: opacity ease 0.3s;
+      opacity: 0;
+      &.active {
+         opacity: 1;
+      }
+      .link-item {
+         text-decoration: none;
+         color: var(--secondary-dark);
+         width: fit-content;
+      }
+      .register-btn {
+         color: #fff;
+      }
+   }
+   .home-page {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      @media only screen and (max-width: 320px) {
+         .app-logo {
+            .icon {
+               width: 28px;
+               height: 28px;
+            }
+            .text {
+               width: 130px;
+               height: 24px;
+            }
+         }
+      }
+      .hero-blob-container {
+         inset: 0;
+         overflow: hidden;
+         // .blob-img-container {
+         //    filter: blur(30px);
+         //    position: absolute;
+         //    right: -100px;
+         //    top: -60px;
+         //    width: 800px;
+         //    height: 800px;
+         //    background-size: contain;
+         //    background-position: top;
+         //    background-repeat: no-repeat;
+         //    background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CradialGradient id=%22c%22 r=%22100%25%22 cx=%2297%25%22 cy=%2292%25%22%3E%3Cstop offset=%220%25%22 stop-color=%22%230093E9%22%2F%3E%3Cstop offset=%2250%25%22 stop-color=%22%2380D0C7%22%2F%3E%3Cstop offset=%22100%25%22 stop-color=%22%23829ed1%22%2F%3E%3C%2FradialGradient%3E%3CclipPath id=%22b%22%3E%3Cpath fill=%22currentColor%22 d=%22M911 640q-26 140-155 195.5T487 930q-140 39-237.5-69t-143-234.5Q61 500 97 366.5T248.5 158Q364 83 509 54.5t249 77q104 105.5 141.5 237T911 640Z%22%2F%3E%3C%2FclipPath%3E%3Cfilter id=%22a%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E%3CfeFlood flood-color=%22%23fff%22 result=%22neutral-gray%22%2F%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22%2F%3E%3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22%2F%3E%3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E%3CfeFuncA type=%22table%22 tableValues=%220 0 0.5 0%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22%2F%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cg filter=%22url(%23a)%22 clip-path=%22url(%23b)%22%3E%3Cpath fill=%22url(%23c)%22 d=%22M911 640q-26 140-155 195.5T487 930q-140 39-237.5-69t-143-234.5Q61 500 97 366.5T248.5 158Q364 83 509 54.5t249 77q104 105.5 141.5 237T911 640Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+         // }
+      }
+
+      .main-content-wrapper {
+         z-index: 1;
+         height: 100%;
+         display: flex;
+         flex-direction: column;
+         flex: 1;
+      }
+      .main {
+         flex: 1;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+      }
+      .main-text {
+         font-size: clamp(3.2rem, 6vw, 6rem);
+         font-weight: bold;
+         text-align: center;
+         letter-spacing: -0.025em;
+         @media only screen and (max-width: 320px) {
+            font-size: 2.2rem;
+         }
+      }
+      .type-writer-container {
+         font-family: "Shippori Mincho B1", serif;
+         font-weight: 500;
+      }
+   }
+   .main-description {
+      font-size: clamp(1.2rem, 7vw, 1.625rem);
+      margin-top: 2rem;
+      font-weight: 500;
+      text-align: center;
+      margin-bottom: 1.2rem;
+   }
+   .description-btn {
+      margin-bottom: 2rem;
+      padding: 9px 16px;
+      min-width: 230px;
+      display: flex;
+      justify-content: center;
+      font-size: 1.1rem;
+   }
+}

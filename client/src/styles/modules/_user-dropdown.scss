@@ -1,0 +1,29 @@
+.user-dropdown-container {
+   &.active {
+      .user-dropdown {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
+   .user-dropdown {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 6px;
+      top: -40px;
+      width: calc(100% - 20px);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform ease 0.2s, opacity ease 0.2s;
+      .logout-btn {
+         padding: 3px 5px;
+         width: 100%;
+         font-size: 1rem;
+         font-weight: 600;
+         color: var(--dark-secondary-blue);
+         .text {
+            margin-top: 3px;
+         }
+      }
+   }
+}

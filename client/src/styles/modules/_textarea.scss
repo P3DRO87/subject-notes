@@ -1,0 +1,51 @@
+.label-container {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 2rem;
+   &.textarea {
+      .error-msg {
+         margin-top: 0;
+      }
+   }
+   &.has-error {
+      .label-text {
+         color: var(--error);
+      }
+      textarea {
+         border-color: var(--error);
+         &:focus {
+            outline-color: var(--error);
+         }
+      }
+   }
+   .label-text {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+   }
+   textarea {
+      border: none;
+      width: 100%;
+      border: 1px solid var(--strong-grey);
+      border-radius: 0.4rem;
+      padding: 0.2rem;
+
+      min-height: 250px;
+      width: 100%;
+      resize: vertical;
+      &:focus-visible {
+         outline: 1px solid var(--strong-grey);
+      }
+      &::placeholder {
+         color: var(--font-light-muted);
+         font-weight: 500;
+      }
+   }
+   .error-msg {
+      color: var(--error);
+      margin-left: 0.8rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+   }
+}
