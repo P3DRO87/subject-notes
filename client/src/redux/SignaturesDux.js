@@ -4,6 +4,10 @@ const initialState = {
 
 export const signatureReducer = (state = initialState, { type, payload }) => {
    switch (type) {
+      case "SET_SIGNATURES": {
+         return { ...state, signatures: payload };
+      }
+
       case "ADD_NEW_SIGNATURE":
          return {
             ...state,
@@ -28,6 +32,11 @@ export const signatureReducer = (state = initialState, { type, payload }) => {
          return state;
    }
 };
+
+export const setSignatures = (signatures) => ({
+   type: "SET_SIGNATURES",
+   payload: signatures,
+});
 
 export const addNewSignature = (newSignature) => ({
    type: "ADD_NEW_SIGNATURE",

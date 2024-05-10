@@ -63,8 +63,6 @@ const LoggedInLayout = ({
       if (lsToken && !user) fetchToken();
    }, [dispatch, user]);
 
-   console.log(user);
-
    useEffect(() => {
       document.addEventListener("click", ({ target }) => {
          if (userBtnRef.current === target || userBtnRef.current?.contains(target)) {

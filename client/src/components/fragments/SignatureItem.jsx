@@ -120,7 +120,7 @@ const SignatureItem = ({ signature }) => {
             className={`menu-context${!isToolTipActive ? " d-none" : ""}`}
          >
             <div ref={toolTipRef} className="item-options">
-               <Link className="item-element" href={`/signatures/${signature.name}`}>
+               <Link className="item-element" href={`/app/signatures/${signature.id}`}>
                   Ir a la asignatura {signature.name}
                </Link>
                <button

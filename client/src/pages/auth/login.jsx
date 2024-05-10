@@ -56,7 +56,10 @@ const Login = () => {
             token: tokenRes.access_token,
          });
 
-         if (loginErr) return setAlertMsg("Failed to login");
+         if (loginErr) {
+            setIsAlertActive(true);
+            return setAlertMsg("Failed to login");
+         }
 
          dispatch(setUser(googleUserRes.user));
 
@@ -67,7 +70,10 @@ const Login = () => {
 
          router.replace("/app");
       },
-      onError: () => setAlertMsg("Failed to login"),
+      onError: () => {
+         setIsAlertActive(true);
+         setAlertMsg("Failed to login");
+      },
    });
 
    return (

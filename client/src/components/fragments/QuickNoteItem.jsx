@@ -134,7 +134,7 @@ const QuickNoteItem = ({ quickNote }) => {
                <Link
                   onClick={() => dispatch(setSelectedNote(quickNote))}
                   className="item-element"
-                  href={`/quick-notes/${quickNote.id}`}
+                  href={`/app/quick-notes/${quickNote.id}`}
                >
                   Ir a la nota
                </Link>

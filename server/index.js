@@ -7,6 +7,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const os = require("os");
+const Signature = require("./models/Signature");
 
 const {
    Ethernet: [{ address }],
@@ -32,12 +33,18 @@ const fileUploadConfig = {
 app.use(fileUpload(fileUploadConfig));
 
 app.get("/api/test", async (req, res) => {
-   res.json({ products: "hola" });
+   await Signature.updateMany({}, { $set: { disabled: false } });
+
+   res.json({ msg: "Done" });
 });
 
 app.use("/api/user", require("./routes/user"));
 
 app.use("/api/quick-notes", require("./routes/quick-notes"));
+
+app.use("/api/signatures", require("./routes/signatures"));
+
+app.use("/api/signatures/pages", require("./routes/signatures-pages"));
 
 hosts.forEach((host) => {
    app.listen(PORT, host, () => console.log(`server running at http://${host}:${PORT}`));

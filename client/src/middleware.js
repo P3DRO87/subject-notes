@@ -29,7 +29,6 @@ export async function middleware(req) {
    }
 
    if (!isValidToken && pathname.includes("/app")) {
-      console.log("hola");
       return NextResponse.redirect(origin);
    }
 
@@ -39,5 +38,3 @@ export async function middleware(req) {
       return NextResponse.redirect(`${origin}/app/${mainPage}`);
    }
 }
-
-

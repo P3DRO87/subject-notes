@@ -3,8 +3,11 @@ import Input from "@/components/fragments/Input";
 import Modal from "@/components/fragments/Modal";
 import SignatureItem from "@/components/fragments/SignatureItem";
 import LoggedInLayout from "@/components/templates/LoggedInLayout";
-import { addNewSignature } from "@/redux/SignaturesDux";
+import { getAllSignatures } from "@/helpers/signatures-db";
+import { addNewSignature, setSignatures } from "@/redux/SignaturesDux";
+import { setIsToastActive, setToastMsg } from "@/redux/ui";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -35,6 +38,23 @@ const Signatures = () => {
       setSignatureName(null);
       reset();
    };
+
+   useEffect(() => {
+      const fetchSignatures = async () => {
+         const token = localStorage.getItem("token");
+
+         const [signaturesRes] = await getAllSignatures(token);
+
+         if (!signaturesRes) {
+            dispatch(setIsToastActive(true));
+            return dispatch(setToastMsg("Fallo al cargar las asignaturas"));
+         }
+
+         dispatch(setSignatures(signaturesRes.signatures));
+      };
+
+      fetchSignatures();
+   }, [dispatch]);
 
    return (
       <>

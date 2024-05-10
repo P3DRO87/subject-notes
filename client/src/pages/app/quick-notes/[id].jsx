@@ -79,7 +79,7 @@ const SingleQuickNote = ({ note }) => {
             isModalActive={isNoteModalActive}
          >
             <form onSubmit={handleSubmit(handleSetNote)} className="new-note-form">
-               <h2 className="new-note-title mb-4">Edita tu nueva nota rapida</h2>
+               <h2 className="new-note-title mb-4">Edita tu nota rapida</h2>
                <Input
                   label="Titulo"
                   placeholder="Requerido"
