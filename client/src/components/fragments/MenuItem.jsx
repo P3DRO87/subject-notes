@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import PointerArrow from "./Icons/PointerArrow";
 import { useEffect } from "react";
 import { ActiveClassEl, TrasitionTrigger } from "../utils/TrasitionTrigger";
+import PointerArrow from "./icons/PointerArrow";
 
 const MenuItem = ({
    children,
