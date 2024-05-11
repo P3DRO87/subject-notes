@@ -6,8 +6,9 @@ import { RxDotsHorizontal } from "react-icons/rx";
 const initialOffsetCount = { prev: 2, next: 5 };
 
 const MAX_TO_OFFSET = 5;
+const OFFSET_BETWEEN = 3;
 
-const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
+const Pagination = ({ paginationTotal = 10, initialPage = 1 }) => {
    const paginationTotalArr = [...Array(paginationTotal).fill("").keys()].map(
       (_, i) => i + 1
    );
@@ -19,17 +20,27 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
    const [selectedItemWidth, setSelectedItemWidth] = useState(null);
    const [offsetCount, setOffsetCount] = useState(initialOffsetCount);
 
+   const isTotalOfssetLimit = paginationTotal - currentPageNumber <= OFFSET_BETWEEN;
+
    const handleChangePagination = (currentPage) => {
+      console.log(currentPage);
       const isGoingRight = currentPage > currentPageNumber;
 
       const isOffsetLimit = currentPage >= MAX_TO_OFFSET;
 
-      if (isGoingRight && isOffsetLimit) {
+      const isTotalOfssetLimit = paginationTotal - currentPageNumber <= OFFSET_BETWEEN;
+
+      if (!isTotalOfssetLimit && isGoingRight && isOffsetLimit) {
          setOffsetCount({ prev: offsetCount.prev + 1, next: offsetCount.next + 1 });
       }
 
-      if (!isGoingRight && currentPage + 1 >= MAX_TO_OFFSET) {
+      if (!isTotalOfssetLimit && !isGoingRight && currentPage + 1 >= MAX_TO_OFFSET) {
          setOffsetCount({ prev: offsetCount.prev - 1, next: offsetCount.next - 1 });
+      }
+
+      if (isGoingRight && isTotalOfssetLimit) {
+         setTranslateXIdx(currentPage - OFFSET_BETWEEN);
+         return setCurrentPageNumber(currentPage);
       }
 
       setTranslateXIdx(currentPage >= MAX_TO_OFFSET ? MAX_TO_OFFSET - 1 : currentPage);
@@ -56,7 +67,11 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
             {currentPageNumber}
          </div>
          <div
-            onClick={() => handleChangePagination(1)}
+            onClick={() => {
+               setTranslateXIdx(1);
+               setCurrentPageNumber(1);
+               setOffsetCount(initialOffsetCount);
+            }}
             className="first-item pagination-item"
          >
             1
@@ -65,14 +80,11 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
             onClick={() => {
                if (currentPageNumber < MAX_TO_OFFSET) return handleChangePagination(2);
 
-               const offsetBetween = offsetCount.next - offsetCount.prev;
-
-               const leftLimit = offsetCount.prev - offsetBetween;
-               const rightLimit = offsetCount.next - offsetBetween;
+               const leftLimit = offsetCount.prev - MAX_TO_OFFSET;
+               const rightLimit = offsetCount.next - MAX_TO_OFFSET;
 
                const nextOffset = { prev: leftLimit, next: rightLimit };
-               console.log(offsetBetween);
-               handleChangePagination(leftLimit <= 1 ? 1 : offsetBetween - 1);
+               handleChangePagination(currentPageNumber - MAX_TO_OFFSET || 1);
                setOffsetCount(leftLimit <= 1 ? initialOffsetCount : nextOffset);
             }}
             className="next-page-btn pagination-item"
@@ -88,8 +100,30 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
                {n}
             </div>
          ))}
-         <div className="next-page-btn pagination-item">
-            <RxDotsHorizontal />
+         <div
+            onClick={() => {
+               if (currentPageNumber + 1 >= MAX_TO_OFFSET + OFFSET_BETWEEN - 1) {
+                  setTranslateXIdx(MAX_TO_OFFSET + OFFSET_BETWEEN - 1);
+                  return setCurrentPageNumber(paginationTotal);
+               }
+
+               const leftLimit = offsetCount.prev + MAX_TO_OFFSET - OFFSET_BETWEEN;
+               const rightLimit = offsetCount.next + MAX_TO_OFFSET - OFFSET_BETWEEN;
+
+               const nextOffset = { prev: leftLimit, next: rightLimit };
+               handleChangePagination(
+                  currentPageNumber + OFFSET_BETWEEN >= MAX_TO_OFFSET
+                     ? 7
+                     : currentPageNumber + OFFSET_BETWEEN
+               );
+               setOffsetCount(nextOffset);
+
+               currentPageNumber + 1 < MAX_TO_OFFSET + OFFSET_BETWEEN - 1 &&
+                  setCurrentPageNumber(currentPageNumber + MAX_TO_OFFSET);
+            }}
+            className="next-page-btn pagination-item"
+         >
+            {!isTotalOfssetLimit ? <RxDotsHorizontal /> : paginationTotal - 1}
          </div>
          <div className="last-item pagination-item">{paginationTotal}</div>
       </div>
