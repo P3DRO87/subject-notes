@@ -6,7 +6,7 @@
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1",
       "start:server": "NODE_ENV=production  node index",
-      "start": "npm run build:client && npm run start:server"
+      "start": "npm run start:server"
    },
    "keywords": [],
    "author": "",
