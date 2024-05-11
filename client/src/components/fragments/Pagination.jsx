@@ -5,9 +5,11 @@ import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const MAX_TO_OFFSET = 5;
 
-const initialPaginaLimit = { offset: 0, limit: 5 };
-
-const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
+const Pagination = ({
+   paginationTotal = 15,
+   initialPage = 1,
+   onSelectedPage = function () {},
+}) => {
    const paginationTotalArr = [...Array(paginationTotal).fill("").keys()].map(
       (_, i) => i + 1
    );
@@ -15,9 +17,13 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
    const selectedItemRef = useRef();
 
    const [currentPageNumber, setCurrentPageNumber] = useState(initialPage);
-   const [translateXIdx, setTranslateXIdx] = useState(initialPage);
+   const [translateXIdx, setTranslateXIdx] = useState(initialPage % MAX_TO_OFFSET);
    const [selectedItemWidth, setSelectedItemWidth] = useState(null);
-   const [paginationLimit, setPaginationLimit] = useState(initialPaginaLimit);
+
+   const [paginationLimit, setPaginationLimit] = useState({
+      offset: 0,
+      limit: 5,
+   });
 
    const paginatedArr = paginationTotalArr.slice(
       paginationLimit.offset,
@@ -35,9 +41,40 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
       setSelectedItemWidth(width);
    }, []);
 
+   useEffect(() => {
+      onSelectedPage(currentPageNumber);
+   }, [currentPageNumber]);
+
    return (
       <div className="wrapper">
-         <div className="next-page-btn pagination-item">
+         <div
+            onClick={() => {
+               let paginatedArr = [...paginationTotalArr];
+
+               const newPaginaLimit = {
+                  offset: paginationLimit.offset - MAX_TO_OFFSET,
+                  limit: paginationLimit.limit - MAX_TO_OFFSET,
+               };
+
+               if (newPaginaLimit.offset < 0) return;
+
+               setPaginationLimit(newPaginaLimit);
+
+               paginatedArr = paginatedArr.slice(
+                  newPaginaLimit.offset,
+                  newPaginaLimit.limit
+               );
+
+               setCurrentPageNumber((prev) => {
+                  const controlledOffset = prev % MAX_TO_OFFSET;
+
+                  return paginatedArr[
+                     controlledOffset === 0 ? MAX_TO_OFFSET - 1 : controlledOffset - 1
+                  ];
+               });
+            }}
+            className="next-page-btn pagination-item"
+         >
             <MdKeyboardDoubleArrowRight style={{ rotate: "-180deg" }} />
          </div>
          <div className="pagination-group">
@@ -66,22 +103,26 @@ const Pagination = ({ paginationTotal = 25, initialPage = 1 }) => {
             onClick={() => {
                let paginatedArr = [...paginationTotalArr];
 
-               setPaginationLimit((prev) => {
-                  const newState = {
-                     ...prev,
-                     offset: prev.offset + MAX_TO_OFFSET,
-                     limit: prev.limit + MAX_TO_OFFSET,
-                  };
+               const newPaginaLimit = {
+                  offset: paginationLimit.offset + MAX_TO_OFFSET,
+                  limit: paginationLimit.limit + MAX_TO_OFFSET,
+               };
 
-                  paginatedArr = paginatedArr.slice(newState.offset, newState.limit);
+               if (newPaginaLimit.offset === paginationTotal) return;
 
-                  console.log(paginatedArr[(currentPageNumber % MAX_TO_OFFSET) - 1]);
+               setPaginationLimit(newPaginaLimit);
 
-                  setCurrentPageNumber(
-                     (prev) => paginatedArr[(prev % MAX_TO_OFFSET) - 1]
-                  );
+               paginatedArr = paginatedArr.slice(
+                  newPaginaLimit.offset,
+                  newPaginaLimit.limit
+               );
 
-                  return newState;
+               setCurrentPageNumber((prev) => {
+                  const controlledOffset = prev % MAX_TO_OFFSET;
+
+                  return paginatedArr[
+                     controlledOffset === 0 ? MAX_TO_OFFSET - 1 : controlledOffset - 1
+                  ];
                });
             }}
             className="next-page-btn pagination-item"

@@ -3,7 +3,6 @@ import RichTextEditor from "@/components/sections/RichTextEditor";
 import LoggedInLayout from "@/components/templates/LoggedInLayout";
 import { getSignature } from "@/helpers/signatures-db";
 import { getAllSignaturesPages } from "@/helpers/signatures-pages";
-import useItemsId from "@/hooks/useItemsId";
 import React, { Fragment, useEffect, useState } from "react";
 
 const contentType = {
@@ -51,7 +50,7 @@ const SignatureSingle = ({ signature }) => {
                </div>
             </div>
             <div className="pagination-container d-flex justify-content-center">
-               <Pagination />
+               <Pagination initialPage={1} />
             </div>
          </div>
       </LoggedInLayout>
