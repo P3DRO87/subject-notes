@@ -33,7 +33,7 @@ const fileUploadConfig = {
 app.use(fileUpload(fileUploadConfig));
 
 app.get("/api/test", async (req, res) => {
-   await Signature.updateMany({}, { $set: { disabled: false } });
+   // await Signature.updateMany({}, { $set: { disabled: false } });
 
    res.json({ msg: "Done" });
 });
