@@ -6,13 +6,6 @@ const fileUpload = require("express-fileupload");
 const cors = require("cors");
 require("dotenv").config();
 
-const os = require("os");
-const Signature = require("./models/Signature");
-
-const {
-   Ethernet: [{ address }],
-} = os.networkInterfaces();
-
 const { PORT = 3004, HOST = "localhost", NE_HOST = address } = process.env;
 
 const hosts = [HOST, NE_HOST];
