@@ -42,5 +42,3 @@ app.use("/api/signatures/pages", require("./routes/signatures-pages"));
 hosts.forEach((host) => {
    app.listen(PORT, host, () => console.log(`server running at http://${host}:${PORT}`));
 });
-
-module.exports = app;
