@@ -1,3 +1,7 @@
+.wrapper {
+   display: flex;
+   gap: 0.25rem;
+}
 .pagination-group {
    display: flex;
    gap: 0.25rem;
@@ -16,19 +20,19 @@
       border-radius: 8px;
       transition: transform cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
    }
-   .pagination-item {
-      cursor: pointer;
-      background: #202024;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      min-width: 35px;
-      min-height: 35px;
-      padding: 3px;
-      border-radius: 8px;
-      &.selected {
-         background: #006fee;
-      }
+}
+.pagination-item {
+   cursor: pointer;
+   background: #202024;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: #fff;
+   min-width: 35px;
+   min-height: 35px;
+   padding: 3px;
+   border-radius: 8px;
+   &.selected {
+      background: #006fee;
    }
 }

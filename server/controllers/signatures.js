@@ -7,8 +7,6 @@ const getSignature = async (req, res = response) => {
    try {
       const signatureDB = await Signature.findById(id).select("name _id").lean();
 
-      console.log(signatureDB);
-
       if (!signatureDB) {
          return res.status(400).json({ msg: "This signature doesn't exist" });
       }
