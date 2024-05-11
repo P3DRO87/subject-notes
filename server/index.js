@@ -6,9 +6,9 @@ const fileUpload = require("express-fileupload");
 const cors = require("cors");
 require("dotenv").config();
 
-const { PORT = 3004, HOST = "localhost", NE_HOST = address } = process.env;
+const { PORT = 3004, HOST = "localhost" } = process.env;
 
-const hosts = [HOST, NE_HOST];
+const hosts = [HOST];
 
 app.use(cors());
 app.use(cookieParser());
